@@ -5,6 +5,8 @@ import icons from "../utils/icons";
 import * as action from "../store/action";
 import moment from "moment";
 import { toast, ToastContainer } from "react-toastify";
+import LoadingSong from "./LoadingSong";
+import RightPlayer from "./RightPlayer";
 
 const {
   AiOutlineHeart,
@@ -17,7 +19,7 @@ const {
   BsPause,
 } = icons;
 var intervalId;
-function Player() {
+function Player ({setIsShowRightSidebar}) {
   const [audio, setAudio] = useState(new Audio());
   const { currentSongId, isPlaying, durationSong, songs, atAlbum } =
     useSelector((state) => state.music);
@@ -25,8 +27,9 @@ function Player() {
   const [songInfo, setSongInfo] = useState();
   const trackRef = useRef();
   const [isShuffle, setIsShuffle] = useState(false);
-  const [isRepeat, setIsRepeat] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [isRepeat, setIsRepeat] = useState(false);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchDetailSong = async () => {
       const music = await apis?.apiGetDetailSong(currentSongId);
@@ -34,15 +37,17 @@ function Player() {
     };
 
     const fetchSong = async () => {
+      setLoading(false);
+      fetchDetailSong();
       const songPlay = await apis?.apiGetSong(currentSongId);
       if (songPlay.data.err === 0) {
         audio.pause();
         setAudio(new Audio(songPlay?.data.data["128"]));
-        dispatch(action.setCurrentAudio(new Audio(songPlay?.data.data["128"])))
-        fetchDetailSong();
+        dispatch(action.setCurrentAudio(new Audio(songPlay?.data.data["128"])));
       } else if (songPlay.data.err === -1110) {
         toast.warn("Không phát được bài vip!!");
       }
+      setLoading(true)
     };
     fetchSong();
   }, [currentSongId]);
@@ -53,8 +58,8 @@ function Player() {
     if (isPlaying) {
       intervalId = setInterval(() => {
         let percent =
-          Math.round((audio.currentTime * 10000) / songInfo.duration) / 100;
-        setRunTimeSong(moment.utc(audio.currentTime * 1000).format("mm:ss"));
+          Math.round((audio?.currentTime * 10000) / songInfo?.duration) / 100;
+        setRunTimeSong(moment.utc(audio?.currentTime * 1000).format("mm:ss"));
         thumbRef.current.style.cssText = `right: ${100 - percent}%`;
       }, 1000);
     } else {
@@ -72,24 +77,21 @@ function Player() {
 
   useEffect(() => {
     const handleEnded = () => {
-      if(isShuffle) {
-        handelShuffle()
+      if (isShuffle) {
+        handelShuffle();
+      } else if (isRepeat) {
+        handleNextSong();
+      } else {
+        audio.pause();
+        dispatch(action.playMusic(false));
       }
-      else if(isRepeat) {
-        handleNextSong()
-      } 
-      else {
-        audio.pause()
-        dispatch(action.playMusic(false))
-      }
-    }
-    audio.addEventListener('ended', handleEnded)
-    
+    };
+    audio.addEventListener("ended", handleEnded);
+
     return () => {
-      audio.removeEventListener('ended', handleEnded)
-    }
-  }, [audio])
-  
+      audio.removeEventListener("ended", handleEnded);
+    };
+  }, [audio]);
 
   const handlePlayAndPause = () => {
     if (isPlaying) {
@@ -135,21 +137,20 @@ function Player() {
   };
   const handelShuffle = () => {
     const randomSongIndex = Math.round(Math.random() * songs?.length) - 1;
-    console.log(randomSongIndex, songs.length);
     dispatch(action.setCurrentSongId(songs[randomSongIndex].encodeId));
     dispatch(action.playMusic(true));
     setIsShuffle((pre) => !pre);
   };
 
   return (
-    <div className=" flex bg-player-bar px-5  h-full">
-      <div className="w-[30%] flex-auto flex-1 gap-4 flex items-center">
+    <div className="flex bg-player px-5 h-full ">
+      <div className="gap-4 flex items-center ">
         <img
           src={songInfo?.thumbnail}
           title="thumbnail"
           className="w-16 h-16 rounded-md"
         />
-        <div className="flex font-semibold flex-col">
+        <div className="mr-2 flex font-semibold flex-col">
           <span className="text-white text-[14px]">{songInfo?.title}</span>
           <span className="text-sm text-gray-500">
             {songInfo?.artistsNames}
@@ -160,12 +161,12 @@ function Player() {
           <FiMoreHorizontal size={18} />
         </div>
       </div>
-      <div className="w-[40%] items-center gap-2 flex flex-col flex-auto">
+      <div className="items-center gap-2 flex flex-col flex-auto">
         <div className="gap-8 flex h-[50px] items-center justify-center  ">
           <span
             className={`${isShuffle && "text-purple-600"} cursor-pointer`}
             title="Bật phát ngẫu nhiên"
-            onClick={() => setIsShuffle(pre => !pre)}
+            onClick={() => setIsShuffle((pre) => !pre)}
           >
             <FaRandom size={18} />
           </span>
@@ -179,7 +180,9 @@ function Player() {
             onClick={handlePlayAndPause}
             className=" cursor-pointer border p-1 rounded-[50%] hover:text-select-color hover:border-select-color "
           >
-            {isPlaying ? (
+            {!loading ? (
+              <LoadingSong />
+            ) : isPlaying ? (
               <BsPause size={30} />
             ) : (
               <BsPlay className="ml-1" size={30} />
@@ -191,7 +194,11 @@ function Player() {
           >
             <MdSkipNext size={26} />
           </span>
-          <span onClick={() => setIsRepeat(pre => !pre)}  className={`cursor-pointer ${isRepeat && 'text-select-color'}`} title="Bật pháp lại tất cả">
+          <span
+            onClick={() => setIsRepeat((pre) => !pre)}
+            className={`cursor-pointer ${isRepeat && "text-select-color"}`}
+            title="Bật pháp lại tất cả"
+          >
             <IoIosRepeat size={26} />
           </span>
         </div>
@@ -200,7 +207,7 @@ function Player() {
           <div
             onClick={handleClickProgressBar}
             ref={trackRef}
-            className=" cursor-pointer w-3/4 rounded-l-full rounded-r-full relative hover:h-[6px] mt-auto mb-auto ml-3 mr-3 h-[3px] bg-[#5A5154]"
+            className=" cursor-pointer w-2/4 rounded-l-full rounded-r-full relative hover:h-[6px] mt-auto mb-auto ml-3 mr-3 h-[3px] bg-[#5A5154]"
           >
             <div
               ref={thumbRef}
@@ -210,7 +217,7 @@ function Player() {
           <div>{moment.unix(songInfo?.duration).format("mm:ss")}</div>
         </div>
       </div>
-      <div className="w-[30%]  flex-auto ">volume</div>
+        <RightPlayer setIsShowRightSidebar={setIsShowRightSidebar} setAudio={setAudio} audio={audio}/>
       <ToastContainer
         position="top-right"
         autoClose={5000}

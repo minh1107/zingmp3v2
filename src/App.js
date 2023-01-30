@@ -7,6 +7,8 @@ import { Routes, Route } from "react-router-dom";
 import path from "./utils/path";
 import * as actions from './store/action'
 import Album from "./container/public/Album";
+import WeekRank from "./container/public/WeekRank";
+import ZingChart from "./container/public/ZingChart";
 
 function App() {
   const dispath = useDispatch()
@@ -23,6 +25,8 @@ function App() {
           <Route path={path.MY_MUSIC} element={<Personal />} />
           <Route path={path.ALBUM_TITLE_PID} element={<Album />} />
           <Route path={path.PLAYLIST_TITLE_PID} element={<Album />} />
+          <Route path={path.WEEKRANK_TITLE_PID} element={<WeekRank />} />
+          <Route path={path.ZINGCHART_TITLE_PID} element={<ZingChart />} />
           
           <Route path={path.STAR} element={<Home />} />
         </Route>

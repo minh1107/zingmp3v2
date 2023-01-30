@@ -84,7 +84,7 @@ function Slider() {
     };
   }, []);
 
-  const slider = banner.banner.items;
+  const slider = banner?.banner?.items;
   const handleClickBanner = (item) => {
     if(item.type === 1) {
       dispatch(action.setCurrentSongId(item.encodeId))

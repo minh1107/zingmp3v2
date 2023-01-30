@@ -7,6 +7,8 @@ const actionType = {
     SET_ALBUM: 'SET_ALBUM',
     PLAY_LIST: 'PLAY_LIST',
     CURRENT_AUDIO: 'CURRENT_AUDIO',
+    LOADING: 'LOADING',
+    SET_CUR_SONG_DATA: 'SET_CUR_SONG_DATA'
 }
 
 export default actionType

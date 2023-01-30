@@ -6,7 +6,8 @@ const initState = {
   durationSong: null,
   atAlbum: false,
   songs: null,
-  audio: new Audio()
+  audio: new Audio(),
+  currentSongData: null,
 };
 
 const musicReducer = (state = initState, action) => {
@@ -38,9 +39,14 @@ const musicReducer = (state = initState, action) => {
       };
     case actionType.CURRENT_AUDIO:
       return {
-        ...state, 
-        audio: action.audio
-      }
+        ...state,
+        audio: action.audio,
+      };
+    case actionType.SET_CUR_SONG_DATA:
+      return {
+        ...state,
+        currentSongData: action.data || null,
+      };
     default:
       return state;
   }

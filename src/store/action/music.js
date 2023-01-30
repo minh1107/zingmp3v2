@@ -31,6 +31,16 @@ export const setCurrentAudio = (audio) => ({
   audio,
 });
 
+export const loading = (flag) => ({
+  type: actionType.LOADING,
+  flag,
+});
+
+export const setCurrentSongData = (data) => ({
+  type: actionType.SET_CUR_SONG_DATA,
+  data,
+});
+
 // export const fetchDetailPlaylist = (pid) => async (dispatch) => {
 //     try {
 //         const res = await apis.apiGetDetailPlaylist(pid)

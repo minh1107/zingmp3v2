@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Scrollbars from "react-custom-scrollbars-2";
 import { Audio } from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { apiGetDetailPlaylist } from "../../api";
 import { ListSong, ListSongs } from "../../components";
 import * as actions from "../../store/action";
@@ -25,20 +25,17 @@ function Album() {
   const [buttonPlay, SetButtonPlay] = useState(false);
   const dispatch = useDispatch();
   const { isPlaying, audio } = useSelector((state) => state.music);
-  console.log(audio)
-  useEffect(() => {
-    if(buttonPlay) {
-      dispatch(actions.playMusic(true))
-    }else  {
-      dispatch(actions.playMusic(false))
-    }
-    return () => {
-      
-    }
-  }, [buttonPlay])
+  const location = useLocation();
+  // useEffect(() => {
+  //   if(buttonPlay) {
+  //     dispatch(actions.playMusic(true))
+  //   }else  {
+  //     dispatch(actions.playMusic(false))
+  //   }
+  // }, [buttonPlay])
   const handlePlayAndPause = () => {
-    SetButtonPlay(!isPlaying)
-    dispatch(actions.playMusic(!isPlaying))
+    SetButtonPlay(!isPlaying);
+    dispatch(actions.playMusic(!isPlaying));
     if (isPlaying) {
       audio.pause();
       dispatch(actions.playMusic(false));
@@ -46,22 +43,36 @@ function Album() {
       audio.play();
       dispatch(actions.playMusic(true));
     }
+  };
 
-  }
-  
   useEffect(() => {
     const fetchDetailPlaylist = async () => {
+      dispatch(actions.loading(true));
       const res = await apiGetDetailPlaylist(pid);
+      dispatch(actions.loading(false));
       if (res.data.err === 0) {
         setPlayListData(res?.data.data);
-        console.log(playListData);
         dispatch(actions.setPlaylist(res?.data?.data?.song?.items));
+        dispatch(actions.setCurrentSongData(res?.data?.data?.song?.items));
       }
     };
     fetchDetailPlaylist();
-  }, []);
+  }, [pid]);
+  useEffect(() => {
+    if (location?.state?.playAlbum) {
+      const randomSong =
+        Math.round(Math.random() * playListData?.song?.items?.length) - 1;
+      dispatch(
+        actions.setCurrentSongId(
+          playListData?.song?.items[randomSong]?.encodeId
+        )
+      );
+      dispatch(actions.playMusic(true));
+    }
+  }, [pid, playListData]);
+
   return (
-    <div className="flex flex-col bg-main-home gap-8 w-full pt-5">
+    <div className="flex p-[59px] relative flex-col bg-main-home gap-8 w-full pt-5">
       <div className="flex gap-8 w-full pt-5 ">
         <div className="flex-none w-[300px]  mb-4">
           <div className="relative">
