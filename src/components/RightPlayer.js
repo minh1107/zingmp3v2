@@ -9,7 +9,7 @@ const {
   BsMusicNoteList,
   BsFillVolumeMuteFill,
 } = icons;
-function RightPlayer({ setIsShowRightSidebar, setAudio, audio }) {
+function RightPlayer({ setIsShowRightSidebar,isShowRightSidebar, setAudio, audio }) {
   const [toggleOnOffVolume, setToggleOnOffVolume] = useState(true);
   const [volume, SetVolume] = useState(audio.value * 100);
   const [previous, setPrevious] = useState(volume)
@@ -30,7 +30,7 @@ function RightPlayer({ setIsShowRightSidebar, setAudio, audio }) {
   };
   
   return (
-    <div className="flex h-full items-center gap-2">
+    <div className="tablet:flex hidden h-full w-[25%] items-center justify-end gap-2">
       <span className="cursor-not-allowed hover:bg-[#2F2532] rounded-full p-2">
         <RiVipFill size={18} />
       </span>
@@ -59,9 +59,10 @@ function RightPlayer({ setIsShowRightSidebar, setAudio, audio }) {
           className="h-[3px] w-[70px] bg-white"
         />
       </span>
+      <div className="border-r mx-3 h-8 border-gray-500"></div>
       <span
         onClick={() => setIsShowRightSidebar((pre) => !pre)}
-        className="cursor-pointer hover:opacity-50  bg-select-color p-[5px] rounded-md hover:opacity-90"
+        className={`cursor-pointer hover:opacity-50 ${isShowRightSidebar ? 'bg-select-color' : ''}   p-[5px] rounded-md hover:opacity-90`}
       >
         <BsMusicNoteList size={18} />
       </span>

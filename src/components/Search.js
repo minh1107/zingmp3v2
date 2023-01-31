@@ -8,7 +8,7 @@ function Search() {
         <BsSearch size={20} />
     </span>
       <input 
-        className="outline-none px-4 py-2 bg-search-bar rounded-r-[20px]  w-[400px] h-10"
+        className="outline-none px-4 py-2 bg-search-bar rounded-r-[20px] w-[200px]  tablet:w-[400px] h-10"
         type={"text"}
         placeholder={'Tìm kiếm bài hát, nghệ sĩ, lời bài hát,...'}
       />

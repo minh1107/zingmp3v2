@@ -19,9 +19,9 @@ const {
   BsPause,
 } = icons;
 var intervalId;
-function Player ({setIsShowRightSidebar}) {
+function Player ({setIsShowRightSidebar, isShowRightSidebar}) {
   const [audio, setAudio] = useState(new Audio());
-  const { currentSongId, isPlaying, durationSong, songs, atAlbum } =
+  const { currentSongId, isPlaying, songs } =
     useSelector((state) => state.music);
   const dispatch = useDispatch();
   const [songInfo, setSongInfo] = useState();
@@ -33,23 +33,25 @@ function Player ({setIsShowRightSidebar}) {
   useEffect(() => {
     const fetchDetailSong = async () => {
       const music = await apis?.apiGetDetailSong(currentSongId);
-      if (music) setSongInfo(music?.data.data);
+      if (music) setSongInfo(music?.data.data) 
     };
 
     const fetchSong = async () => {
       setLoading(false);
-      fetchDetailSong();
       const songPlay = await apis?.apiGetSong(currentSongId);
       if (songPlay.data.err === 0) {
+        console.log(songPlay)
         audio.pause();
         setAudio(new Audio(songPlay?.data.data["128"]));
         dispatch(action.setCurrentAudio(new Audio(songPlay?.data.data["128"])));
-      } else if (songPlay.data.err === -1110) {
+        fetchDetailSong()
+      } else  {
         toast.warn("Không phát được bài vip!!");
       }
       setLoading(true)
     };
     fetchSong();
+    setRunTimeSong('00:00')
   }, [currentSongId]);
 
   const [runTimeSong, setRunTimeSong] = useState("00:00");
@@ -63,7 +65,6 @@ function Player ({setIsShowRightSidebar}) {
         thumbRef.current.style.cssText = `right: ${100 - percent}%`;
       }, 1000);
     } else {
-      setRunTimeSong("00:00");
       intervalId && clearInterval(intervalId);
     }
   }, [isPlaying]);
@@ -144,14 +145,14 @@ function Player ({setIsShowRightSidebar}) {
 
   return (
     <div className="flex bg-player px-5 h-full ">
-      <div className="gap-4 flex items-center ">
+      <div className=" gap-4 tablet:w-[25%] tablet:flex hidden  items-center ">
         <img
           src={songInfo?.thumbnail}
           title="thumbnail"
           className="w-16 h-16 rounded-md"
         />
         <div className="mr-2 flex font-semibold flex-col">
-          <span className="text-white text-[14px]">{songInfo?.title}</span>
+          <span className="text-white text-[14px]">{songInfo?.title.length < 34  ? songInfo?.title : `${songInfo?.title.slice(0,34)}...`}</span>
           <span className="text-sm text-gray-500">
             {songInfo?.artistsNames}
           </span>
@@ -161,7 +162,7 @@ function Player ({setIsShowRightSidebar}) {
           <FiMoreHorizontal size={18} />
         </div>
       </div>
-      <div className="items-center gap-2 flex flex-col flex-auto">
+      <div className="items-center gap-2 w-[50%] flex flex-col flex-auto">
         <div className="gap-8 flex h-[50px] items-center justify-center  ">
           <span
             className={`${isShuffle && "text-purple-600"} cursor-pointer`}
@@ -217,7 +218,7 @@ function Player ({setIsShowRightSidebar}) {
           <div>{moment.unix(songInfo?.duration).format("mm:ss")}</div>
         </div>
       </div>
-        <RightPlayer setIsShowRightSidebar={setIsShowRightSidebar} setAudio={setAudio} audio={audio}/>
+        <RightPlayer setIsShowRightSidebar={setIsShowRightSidebar} isShowRightSidebar={isShowRightSidebar} setAudio={setAudio} audio={audio}/>
       <ToastContainer
         position="top-right"
         autoClose={5000}

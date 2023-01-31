@@ -75,7 +75,7 @@ function ChartSection() {
   const {BiPlay, CiPlay1} = icons
 
   return (
-    <div className="mt-12 relative max-h-[410px]">
+    <div className="mt-12 relative hidden tablet:block max-h-[410px]">
       <img
         src={bgChart}
         alt="bg-chart"

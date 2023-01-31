@@ -11,7 +11,7 @@ function Public() {
   return (
     <div className="w-full h-screen relative flex flex-col bg-main-home text-white">
       <div className="w-full h-full flex flex-auto ">
-        <div className=" h-screen  w-[240px] flex-none bg-left-bar">
+        <div className=" h-screen tablet:w-[240px] w-[70px] flex-none bg-left-bar">
           <SidebarLeft />
         </div>
         <div className="flex relative flex-col flex-auto  bg-main-home">
@@ -36,7 +36,7 @@ function Public() {
         )}
       </div>
       <div className="fixed bottom-0 left-0 right-0 bg-player-bar h-[90px]">
-        <Player setIsShowRightSidebar={setIsShowRightSidebar} />
+        <Player setIsShowRightSidebar={setIsShowRightSidebar} isShowRightSidebar={isShowRightSidebar}/>
       </div>
     </div>
   );

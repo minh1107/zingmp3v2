@@ -9,6 +9,7 @@ function ListSong({index, songData}) {
         dispatch(actions.setCurrentSongId(songData?.encodeId))
         dispatch(actions.setDurationSong(songData?.duration))
         dispatch(actions.playAlbum(true))
+        dispatch(actions.playMusic(false))
     }   
     const dispatch = useDispatch()
   return (

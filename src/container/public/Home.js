@@ -57,7 +57,7 @@ function Home() {
               return (
                 <div className="relative ">
                   <img className="rounded-[30%]" src={item?.thumbnail} />
-                  <div className="absolute bottom-0 text-center w-full font-bold ">{item?.name}</div>
+                  <div className="absolute tablet:flex hidden bottom-0 text-center w-full font-bold ">{item?.name}</div>
                 </div>
               );
             })}

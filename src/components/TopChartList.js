@@ -9,13 +9,13 @@ function TopChartList({ data }) {
     } else setShowMore(10);
   };
   return (
-    <div className="mt-[12px] px-[59px]">
+    <div className="mt-[12px] flex flex-col  px-0 tablet:px-[59px]">
       {data?.map((item, index) => {
         if (index < showMore)
           return (
             <div className="text-[12px] text-[#ffffff95] flex w-full border-b-[#ffffff25] hover:border-none border-b h-[60px] hover:bg-[#2F2532] hover:rounded-md p-[10px]  items-center">
-              <div className="flex-6 flex gap-4 items-center">
-                <div className="mx-3 text-[32px]">{index + 1}</div>
+              <div className="flex-6 flex tablet:gap-4 gap-2 items-center">
+                <div className="tablet:mx-3 text-[32px]">{index + 1}</div>
                 <div className="border-b-2 border-b-[#ffffff75] w-[12px] "></div>
                 <div className="flex gap-2 items-center">
                   <img
@@ -30,8 +30,8 @@ function TopChartList({ data }) {
                   </div>
                 </div>
               </div>
-              <div className="flex-3">{item?.album?.title}</div>
-              <div className="flex-1">
+              <div className="flex-3 hidden tablet:flex">{item?.album?.title}</div>
+              <div className="flex-1 hidden tablet:flex">
                 {moment.unix(item?.duration).format("mm:ss")}
               </div>
             </div>

@@ -59,7 +59,7 @@ function ChartZing() {
 
   return (
     <div className="">
-      <div className="pt-12 h-[450px] relative ">
+      <div className="pt-12 h-[450px]  relative ">
         <img
           src={bgChart}
           alt="bg-chart"

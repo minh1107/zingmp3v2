@@ -5,7 +5,7 @@ import * as actions from "../store/action";
 import icons from "../utils/icons";
 
 const { BiPlay } = icons;
-function SongItem({ item }) {
+function SongItem({ item, rightBar, bgRightBar }) {
   const dispatch = useDispatch();
   const [buttonPlay, setButtonPlay] = useState(false);
   const RefImg = useRef();
@@ -21,19 +21,18 @@ function SongItem({ item }) {
       useRef={RefImg}
       onMouseEnter={handelMouseEnter}
       onMouseLeave={handelMouseLeave}
-      className="flex focus:bg-slate-50 hover:bg-hover-color rounded-md p-[10px] min-[1024px]:w-[30%] w-[45%] gap-[10px]"
+      className={`${!rightBar ? 'min-[1024px]:w-[30%] w-[45%]' : ''} flex flex-col tablet:flex-row ${bgRightBar ? 'bg-select-color' : ''} focus:bg-slate-50 hover:bg-hover-color rounded-md p-[10px]  gap-[10px]`}
     >
       <div className="relative">
         <img
-          onClick={() => {
-            dispatch(actions.setCurrentSongId(item.encodeId));
-            dispatch(actions.playMusic(true));
-          }}
           src={item?.thumbnail}
-          className="cursor-pointer rounded-md h-[60px] w-[60px]"
+          className={`${!rightBar ? 'h-[60px] w-[60px]' : 'h-[40px] w-[40px]'} cursor-pointer rounded-md`}
         />
         {buttonPlay && (
-          <span className="absolute cursor-pointer top-0 bottom-0 left-0 right-0 flex items-center justify-center">
+          <span           onClick={() => {
+            dispatch(actions.setCurrentSongId(item.encodeId));
+            dispatch(actions.playMusic(true));
+          }} className="absolute cursor-pointer top-0 bottom-0 left-0 right-0 flex items-center justify-center">
             <BiPlay size={25} />
           </span>
         )}
@@ -49,9 +48,9 @@ function SongItem({ item }) {
             ? `${item?.artistsNames}...`
             : item?.artistsNames}
         </div>
-        <div className="text-[12px] text-text-color">
+     {!rightBar &&   <div className="text-[12px] text-text-color">
           {moment(item?.releaseDate * 1000).fromNow()}
-        </div>
+        </div>}
       </div>
     </div>
   );

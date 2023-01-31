@@ -15,7 +15,7 @@ function ZingChart() {
       zingChart()
     }, [])
   return (
-    <div className=''>
+    <div className='tablet:mb-0 mb-[900px]'>
       <ChartZing />
       <TopChartList data={data?.RTChart.items}/>
       <WeeklyChart data={data?.weekChart}/>

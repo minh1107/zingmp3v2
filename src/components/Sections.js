@@ -11,7 +11,7 @@ function Sections({ data, amount }) {
         <span className="text-3">Tất cả</span>
       </div>
       <div>
-        <ul className="flex justify-center  items-start gap-[28px]">
+        <ul className="flex tablet:flex-row flex-col justify-center items-start gap-[28px]">
           {data?.items?.map((item, index) => {
             if (index < 5)
               return (

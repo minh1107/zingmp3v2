@@ -26,13 +26,6 @@ function Album() {
   const dispatch = useDispatch();
   const { isPlaying, audio } = useSelector((state) => state.music);
   const location = useLocation();
-  // useEffect(() => {
-  //   if(buttonPlay) {
-  //     dispatch(actions.playMusic(true))
-  //   }else  {
-  //     dispatch(actions.playMusic(false))
-  //   }
-  // }, [buttonPlay])
   const handlePlayAndPause = () => {
     SetButtonPlay(!isPlaying);
     dispatch(actions.playMusic(!isPlaying));

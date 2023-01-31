@@ -29,7 +29,6 @@ const appReducer = (state = initState, action) => {
         favoriteArtist: action.homeData?.find(item => item.sectionType === "artistSpotlight") || {},
         zingChart: action.homeData?.find(item => item.sectionId === "hZC").chart || {},
         zingRank: action.homeData?.find(item => item.sectionId === "hZC").items || {},
-
       };
     case actionType.LOADING:
       return {

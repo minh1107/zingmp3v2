@@ -13,7 +13,7 @@ function Header() {
   return (
     <div className="flex justify-between opacity-80 bg-main-home w-full ">
       <div className="flex gap-6 w-3/4">
-        <div className="flex text-gray-400 gap-6 items-center">
+        <div className="hidden tablet:flex text-gray-400 gap-6 items-center">
           <span>
             <AiOutlineArrowLeft size={24} />
           </span>
@@ -23,13 +23,13 @@ function Header() {
         </div>
         <Search />
       </div>
-      <div className="gap-3 text-white flex">
+      <div className="tablet:flex hidden gap-3 text-white">
         <span className="p-2 rounded-full cursor-pointer bg-[#38303B]">
           <GiClothes size={24} />
         </span>
         <span className="p-2 relative rounded-full cursor-pointer bg-[#38303B]">
           <RiVipDiamondLine size={24} />
-          <div className="absolute bottom-0 right-0 left-[57%] top-[55%] translate-x-[-50%] translate-y-[-50%]  text-[8px]">VIP</div>
+          <div className="absolute bottom-0 right-0 left-[57%] top-[55%] translate-x-[-50%] translate-y-[-50%]  ">VIP</div>
         </span>
         <span className="p-2 rounded-full cursor-pointer bg-[#38303B]">
           <AiOutlineSetting size={24} />

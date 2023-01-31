@@ -26,25 +26,24 @@ function WeeklyChart({ data }) {
       }
     }
   }, [data]);
-  console.log(topArea[1]);
   return (
-    <div className="flex w-full h-[580px] mt-[30px] relative items-center ">
+    <div className="flex  ] w-full h-[580px] mt-[30px] relative items-center ">
       <img
         src={ImgChart}
         alt=""
         className="w-full absolute top-0 bottom-0 right-0 left-0" 
       />
       <div className="bg-[#21142E] opacity-90  absolute top-0 bottom-0 right-0 left-0"></div>
-      <div className="absolute top-0 px-[59px]  pt-[30px] pb-[20px]  bottom-[-90px] right-0 left-0">
+      <div className="absolute top-0 px-[59px]  tablet:pt-[30px] tablet:pb-[20px]  bottom-[-90px] right-0 left-0">
         <div className="text-[40px] mb-2 font-bold">Bảng Xếp Hạng Tuần</div>
-        <div className="flex items-center justify-between">
+        <div className=" flex flex-col tablet:flex-row gap-4 tablet:gap-0 items-center justify-between">
           {topArea?.map((item, index) => {
             if (index < 3)
               return (
-                <div className="flex  py-[20px] w-[30%] px-[10px] flex-col bg-[#30233a92] rounded-xl ">
+                <div className="flex  tablet:py-[20px] tablet:w-[30%] px-[10px] flex-col bg-[#30233a92] rounded-xl ">
                   <div className="flex text-[24px] gap-2 ml-[40px] mb-[10px]">
                     {item.country}
-                    <img src={buttonImg} className=" rounded-full" />
+                    <img src={buttonImg} className="tablet:w-auto h-auto rounded-full" />
                   </div>
                   <div className="flex flex-col">
                     {item?.items.map((sonItem, index) => {
@@ -67,7 +66,7 @@ function WeeklyChart({ data }) {
                                 </div>
                               </div>
                             </div>
-                            <div className="flex-1">
+                            <div className="flex-1 tablet:flex hidden">
                               {moment.unix(sonItem?.duration).format("mm:ss")}
                             </div>
                           </div>

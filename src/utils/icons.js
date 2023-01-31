@@ -3,14 +3,14 @@ import { MdOutlineExplore,MdSkipPrevious, MdSkipNext, MdOutlineMusicVideo , MdOu
 import { IoMdAnalytics, IoIosRepeat } from "react-icons/io";
 import { AiOutlineSetting, AiOutlinePause,AiOutlineArrowLeft,AiOutlineHeart, AiOutlineArrowRight, AiOutlineStar } from "react-icons/ai";
 import { FiMoreHorizontal } from "react-icons/fi";
-import {FaRandom} from 'react-icons/fa'
+import {FaRandom, FaRegComment} from 'react-icons/fa'
 import {BsPlayCircle,BsSearch,BsPauseCircle, BsPlay, BsPause, BsThreeDots ,BsFillVolumeUpFill, BsMusicNoteList, BsFillVolumeMuteFill} from 'react-icons/bs'
 import {CiPlay1, CiMusicNote1} from 'react-icons/ci'
 import {BiPlay, BiCategory} from 'react-icons/bi'
 import {FiMusic} from 'react-icons/fi'
 import {GiMicrophone, GiClothes}  from 'react-icons/gi'
 import {TfiNewWindow} from 'react-icons/tfi' 
-import {FcAlarmClock, FcFullTrash} from 'react-icons/fc'
+import {FcAlarmClock, FcFullTrash, FcLike} from 'react-icons/fc'
 import {TbDeviceAnalytics} from 'react-icons/tb'
 
 const icons = {
@@ -40,7 +40,7 @@ RiFolderMusicLine,
 RiPlayListAddFill,
 MdOutlineRecentActors,
 // header
-RiVipDiamondLine, AiOutlineSetting,GiClothes
+RiVipDiamondLine, AiOutlineSetting,GiClothes, FcLike, FaRegComment
 };
 
 export default icons;

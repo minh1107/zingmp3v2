@@ -100,7 +100,7 @@ function Slider() {
 
   
   return (
-    <div className="flex gap-4 w-full pt-8">
+    <div className="tablet:flex hidden gap-4 w-full  pt-8">
       {slider?.map((item, index) => (
         <img
           onClick={() => handleClickBanner(item)}

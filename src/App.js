@@ -9,6 +9,7 @@ import * as actions from './store/action'
 import Album from "./container/public/Album";
 import WeekRank from "./container/public/WeekRank";
 import ZingChart from "./container/public/ZingChart";
+import Follow from "./container/public/Follow";
 
 function App() {
   const dispath = useDispatch()
@@ -17,7 +18,7 @@ function App() {
     const data = dispath(actions.getHome())
   }, []);
   return (
-    <div>
+    <div className="">
       <Routes>
         <Route path={path.PUBLIC} element={<Public />}>
           <Route path={path.HOME} element={<Home />} />
@@ -27,6 +28,8 @@ function App() {
           <Route path={path.PLAYLIST_TITLE_PID} element={<Album />} />
           <Route path={path.WEEKRANK_TITLE_PID} element={<WeekRank />} />
           <Route path={path.ZINGCHART_TITLE_PID} element={<ZingChart />} />
+          <Route path={path.ZINGCHART_TITLE_PID} element={<ZingChart />} />
+          <Route path={path.FOLLOW} element={<Follow />} />
           
           <Route path={path.STAR} element={<Home />} />
         </Route>
