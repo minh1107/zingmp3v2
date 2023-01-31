@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/minh1107/zingmp3v2/static/css/main.a2099948.css",
-    "main.js": "/minh1107/zingmp3v2/static/js/main.9cd7cfe7.js",
-    "static/media/week-chart-bg.jpg": "/minh1107/zingmp3v2/static/media/week-chart-bg.962c299f47009d6e2130.jpg",
-    "static/media/bg-chart.jpg": "/minh1107/zingmp3v2/static/media/bg-chart.edc30e0d983abd10ea75.jpg",
-    "static/media/logo.svg": "/minh1107/zingmp3v2/static/media/logo.946824c8e549e6bb972d924e995191f6.svg",
-    "index.html": "/minh1107/zingmp3v2/index.html",
-    "main.a2099948.css.map": "/minh1107/zingmp3v2/static/css/main.a2099948.css.map",
-    "main.9cd7cfe7.js.map": "/minh1107/zingmp3v2/static/js/main.9cd7cfe7.js.map"
+    "main.css": "/zingmp3v2/static/css/main.a2099948.css",
+    "main.js": "/zingmp3v2/static/js/main.eb749ed4.js",
+    "static/media/week-chart-bg.jpg": "/zingmp3v2/static/media/week-chart-bg.962c299f47009d6e2130.jpg",
+    "static/media/bg-chart.jpg": "/zingmp3v2/static/media/bg-chart.edc30e0d983abd10ea75.jpg",
+    "static/media/logo.svg": "/zingmp3v2/static/media/logo.946824c8e549e6bb972d924e995191f6.svg",
+    "index.html": "/zingmp3v2/index.html",
+    "main.a2099948.css.map": "/zingmp3v2/static/css/main.a2099948.css.map",
+    "main.eb749ed4.js.map": "/zingmp3v2/static/js/main.eb749ed4.js.map"
   },
   "entrypoints": [
     "static/css/main.a2099948.css",
-    "static/js/main.9cd7cfe7.js"
+    "static/js/main.eb749ed4.js"
   ]
 }
