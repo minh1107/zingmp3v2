@@ -1,5 +1,5 @@
 {
-  "homepage": "https://minh1107.github.io/zingmp3v2/",
+  "homepage": "https://minh1107.github.io/zingmp3v2",
   "name": "todolist-app",
   "version": "0.1.0",
   "private": true,
@@ -28,8 +28,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build", 
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d build", 
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
