@@ -1,1 +1,0 @@
-Folder gọi là components chứa các thành phần không có router - tạo ra để 

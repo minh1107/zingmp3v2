@@ -5,7 +5,7 @@ import * as actions from "../store/action";
 import icons from "../utils/icons";
 
 const { BiPlay } = icons;
-function SongItem({ item, rightBar, bgRightBar }) {
+function SongItem({ item, rightBar, bgRightBar, index }) {
   const dispatch = useDispatch();
   const [buttonPlay, setButtonPlay] = useState(false);
   const RefImg = useRef();
@@ -18,6 +18,7 @@ function SongItem({ item, rightBar, bgRightBar }) {
 
   return (
     <div
+      key={index}
       useRef={RefImg}
       onMouseEnter={handelMouseEnter}
       onMouseLeave={handelMouseLeave}

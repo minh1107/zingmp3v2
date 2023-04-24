@@ -44,7 +44,7 @@ function NewRelease() {
         {itemRelease?.map((item, index) => {
             if(index < 15)
             return(
-              <SongItem item={item}/>
+              <SongItem item={item} index={index}/>
         )
         })}
       </div>

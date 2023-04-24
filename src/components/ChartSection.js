@@ -89,7 +89,7 @@ function ChartSection() {
             {zingRank?.map((item, index) => {
               if(index < 3)
               return (
-                <div className="flex w-full items-center rounded-md h-80px gap-4 hover:bg-[#803685] bg-[#601e67ba] p-[10px]">
+                <div key={index} className="flex w-full items-center rounded-md h-80px gap-4 hover:bg-[#803685] bg-[#601e67ba] p-[10px]">
                   <div className="flex-1 text-[30px]">{index + 1}</div>
                   <img src={item?.thumbnail} className='h-[60px]' title="song " />
                   <div className="flex-6">

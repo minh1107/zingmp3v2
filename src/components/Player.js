@@ -40,7 +40,6 @@ function Player ({setIsShowRightSidebar, isShowRightSidebar}) {
       setLoading(false);
       const songPlay = await apis?.apiGetSong(currentSongId);
       if (songPlay.data.err === 0) {
-        console.log(songPlay)
         audio.pause();
         setAudio(new Audio(songPlay?.data.data["128"]));
         dispatch(action.setCurrentAudio(new Audio(songPlay?.data.data["128"])));
@@ -147,7 +146,7 @@ function Player ({setIsShowRightSidebar, isShowRightSidebar}) {
     <div className="flex bg-player px-5 h-full ">
       <div className=" gap-4 tablet:w-[25%] tablet:flex hidden  items-center ">
         <img
-          src={songInfo?.thumbnail}
+          src={songInfo?.thumbnail || 'https://photo-resize-zmp3.zmdcdn.me/w600_r1x1_webp/cover/5/3/c/8/53c8e5053f0ec4b5a2bed26c37a27c73.jpg'}
           title="thumbnail"
           className="w-16 h-16 rounded-md"
         />

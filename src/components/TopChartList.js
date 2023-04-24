@@ -20,6 +20,7 @@ function TopChartList({ data }) {
                 <div className="flex gap-2 items-center">
                   <img
                     src={item.thumbnail}
+                    alt="Thumbnail"
                     className="rounded-md h-[40px] w-[40px]"
                   />
                   <div className="flex flex-col">

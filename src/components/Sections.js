@@ -15,7 +15,7 @@ function Sections({ data, amount }) {
           {data?.items?.map((item, index) => {
             if (index < 5)
               return (
-                <SectionItem item={item} index={item}/>
+                <SectionItem item={item} index={index}/>
               );
           })}
         </ul>
