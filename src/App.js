@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import { Home, Login, Personal, Public } from "./container/public";
 import { Routes, Route } from "react-router-dom";
 import path from "./utils/path";
@@ -12,10 +11,10 @@ import ZingChart from "./container/public/ZingChart";
 import Follow from "./container/public/Follow";
 
 function App() {
-  const dispath = useDispatch()
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    const data = dispath(actions.getHome())
+    dispatch(actions.getHome())
   }, []);
   return (
     <div className="">
@@ -30,7 +29,6 @@ function App() {
           <Route path={path.ZINGCHART_TITLE_PID} element={<ZingChart />} />
           <Route path={path.ZINGCHART_TITLE_PID} element={<ZingChart />} />
           <Route path={path.FOLLOW} element={<Follow />} />
-          
           <Route path={path.STAR} element={<Home />} />
         </Route>
       </Routes>

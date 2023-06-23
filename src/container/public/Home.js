@@ -56,7 +56,7 @@ function Home() {
             ?.map((item, index) => {
               return (
                 <div className="relative ">
-                  <img className="rounded-[30%]" src={item?.thumbnail} />
+                  <img alt="thumbnail" className="rounded-[30%]" src={item?.thumbnail} />
                   <div className="absolute tablet:flex hidden bottom-0 text-center w-full font-bold ">{item?.name}</div>
                 </div>
               );

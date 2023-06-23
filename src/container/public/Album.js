@@ -5,7 +5,7 @@ import { Audio } from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
 import { apiGetDetailPlaylist } from "../../api";
-import { ListSong, ListSongs } from "../../components";
+import { ListSongs } from "../../components";
 import * as actions from "../../store/action";
 import icons from "../../utils/icons";
 

@@ -15,8 +15,7 @@ const musicReducer = (state = initState, action) => {
     case actionType.SET_CUR_SONG_ID:
       return {
         ...state,
-        currentSongId: action.songId || null,
-      };
+        currentSongId: action.songId || null};
     case actionType.SET_DURATION_SONG:
       return {
         ...state,
